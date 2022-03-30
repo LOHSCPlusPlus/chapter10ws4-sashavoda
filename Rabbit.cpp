@@ -1,7 +1,24 @@
 #include "Rabbit.h"
+#include <iostream>
+#include "ReadUtils.h"
+using namespace std;
 
-void Rabbit::print(ofstream &out){
-    out << b.name << ";" << b.maxWeight << ";" << b.yearRecognized << ";" << b.isRare << endl;
+Rabbit::Rabbit() {
+    for (int index = 0; index < MAX_CHAR_LEN; index++) {
+        name[index] = '\0';
+    }
+    maxWeight = 0;
+    yearRecognized = 0;
+    isRare = false;
+    isValid = false;
+}
+
+bool Rabbit::readValid(){
+  return isValid;
+}
+
+void Rabbit::print(ostream &out){
+    out << name << ";" << maxWeight << ";" << yearRecognized << ";" << isRare << endl;
 }
 
 void Rabbit::readFromUser(){
@@ -9,7 +26,7 @@ void Rabbit::readFromUser(){
     if (cin.peek() == '\n') {
         cin.ignore(100, '\n');
     }
-    cin.get(b.name, Rabbit::MAX_CHAR_LEN);
+    cin.get(name, Rabbit::MAX_CHAR_LEN);
     maxWeight = readDouble("Enter max rabbit weight: ");
     yearRecognized = readInt("Enter year recognized: ");
     isRare = readBool("Is this rabbit rare (y/n)? ");
@@ -27,7 +44,7 @@ void Rabbit::readFromFile(ifstream &inFile){
     inFile >> isRare;
     inFile.ignore(100,'\n');
     // If we reached the end of the file while reading, then the entry is not valid
-    rabbit.isValid = !inFile.eof();
+    isValid = !inFile.eof();
 }
 
 void Rabbit::makeInvalid(){

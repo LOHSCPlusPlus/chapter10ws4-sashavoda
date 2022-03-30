@@ -3,16 +3,15 @@ class RabbitDataBase{
 private:
 
 enum {MAX_RABBITS = 50};
-Rabbit rabbitArray[MAX_RABBITS];
+Rabbit rabbits[MAX_RABBITS];
 int numRabbits;
 
 public:
+RabbitDataBase();
 void read();
-void print(ofstream &out, bool printIndex);
+void print(ostream &out, bool printIndex);
 void save();
 void remove();
 void makeInvalid();
 void add();
-void makeRabbit();
-
-}
+};

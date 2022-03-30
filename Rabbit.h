@@ -1,4 +1,6 @@
-class rabbit{
+#include <fstream>
+using namespace std;
+class Rabbit{
 private:
 
     enum {MAX_CHAR_LEN=100};
@@ -8,8 +10,10 @@ private:
     bool isRare;
     bool isValid;
 public:
-  void print(ofstream &out);
+Rabbit();
+  void print(ostream &out);
   void readFromUser();
   void readFromFile(ifstream &inFile);
   void makeInvalid();
-}
+  bool readValid();
+};
